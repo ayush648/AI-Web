@@ -9,9 +9,19 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
-        .workshop-hero { margin-top: 64px; background: linear-gradient(135deg, #11277a, #4285f4); padding: 56px 24px; text-align: center; color: #fff; }
-        .workshop-hero h1 { font-family: var(--font-display); font-size: 2.5rem; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.5px; }
-        .workshop-hero p { font-size: 1.05rem; opacity: 0.92; max-width: 720px; margin: 0 auto; }
+        .workshop-hero { margin-top: 64px; background: linear-gradient(135deg, #11277a, #4285f4); padding: 56px 24px; color: #fff; }
+        .hero-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 380px; gap: 48px; align-items: center; }
+        .hero-text h1 { font-family: var(--font-display); font-size: 2.5rem; font-weight: 700; margin-bottom: 14px; letter-spacing: -0.5px; }
+        .hero-text p { font-size: 1.05rem; opacity: 0.92; line-height: 1.6; margin-bottom: 26px; }
+        .hero-img { position: relative; }
+        .hero-img img { display: block; width: 100%; height: 340px; object-fit: cover; border-radius: 18px; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35); }
+        .hero-img::after { content: ''; position: absolute; inset: 0; border-radius: 18px; border: 1px solid rgba(255, 255, 255, 0.25); pointer-events: none; }
+
+        @media (max-width: 860px) {
+            .hero-inner { grid-template-columns: 1fr; gap: 32px; text-align: center; }
+            .hero-img { max-width: 420px; margin: 0 auto; width: 100%; }
+            .hero-img img { height: 280px; }
+        }
 
         .back-link { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-display); font-size: 0.875rem; font-weight: 500; color: var(--color-blue); margin-bottom: 32px; transition: color 0.2s; }
         .back-link:hover { color: #3367d6; text-decoration: underline; }
@@ -28,8 +38,8 @@
         .blog-meta { font-family: var(--font-display); font-size: 0.85rem; font-weight: 500; color: var(--color-blue); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 10px; }
 
         /* Schedule card (matches reference image) */
+        .blog-layout > aside { position: sticky; top: 88px; align-self: start; }
         .sched-card {
-            position: sticky; top: 88px;
             background: #fff; border: 1px solid var(--color-border); border-radius: 20px;
             box-shadow: 0 14px 40px rgba(0, 0, 0, 0.08); overflow: hidden;
         }
@@ -57,16 +67,12 @@
         .sched-join { display: block; text-align: center; margin: 22px 24px 26px; font-family: var(--font-display); font-size: 0.95rem; font-weight: 500; color: #fff; background: var(--color-blue); padding: 13px 24px; border-radius: 8px; transition: box-shadow 0.2s, transform 0.1s; }
         .sched-join:hover { box-shadow: 0 6px 16px rgba(66, 133, 244, 0.35); transform: translateY(-1px); }
 
-        /* Speaker image card */
-        .speaker-card { margin-bottom: 28px; background: #fff; border: 1px solid var(--color-border); border-radius: 20px; box-shadow: 0 14px 40px rgba(0, 0, 0, 0.08); overflow: hidden; }
-        .speaker-card img { display: block; width: 100%; height: auto; object-fit: cover; }
-
         @media (max-width: 900px) {
             .blog-layout { grid-template-columns: 1fr; gap: 36px; }
-            .sched-card { position: static; max-width: 420px; }
+            .blog-layout > aside { position: static; max-width: 420px; }
         }
         @media (max-width: 768px) {
-            .workshop-hero h1 { font-size: 1.9rem; }
+            .hero-text h1 { font-size: 1.9rem; }
         }
     </style>
 </head>
@@ -97,10 +103,16 @@
     </header>
 
     <div class="workshop-hero">
-        <h1>AI Training for All</h1>
-        <p>Foundational AI training open to everyone &mdash; learn the basics of artificial intelligence and its real-world applications.</p>
-        <br>
-        <a href="#" class="btn-community" id="teams-link">Join Now &rarr;</a>
+        <div class="hero-inner">
+            <div class="hero-text">
+                <h1>AI Training for All</h1>
+                <p>Foundational AI training open to everyone &mdash; learn the basics of artificial intelligence and its real-world applications.</p>
+                <a href="#" class="btn-community" id="teams-link">Join Now &rarr;</a>
+            </div>
+            <div class="hero-img">
+                <img src="Speaker.png" alt="Session Speaker">
+            </div>
+        </div>
     </div>
 
     <div class="blog-wrap">
@@ -133,9 +145,6 @@
             </article>
 
             <aside>
-            <div class="speaker-card">
-                <img src="Speaker.png" alt="Session Speaker">
-            </div>
             <div class="sched-card">
                 <header class="sched-head">
                     <span class="sched-cal"><svg class="icon" style="width:26px;height:26px"><use href="#ic-cal"/></svg></span>
